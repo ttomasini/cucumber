@@ -11,6 +11,8 @@ references:
   persist_all: &persist_all
     persist_to_workspace:
       root: /
+      paths:
+        -  *
 
 jobs:
   # test-cucumber-expressions-java:
@@ -77,7 +79,7 @@ jobs:
   #   steps:
   #     - checkout
   #     - run: make --directory ./gherkin/java
-  # 
+  #
   test-gherkin-javascript:
     <<: *default
     steps:
