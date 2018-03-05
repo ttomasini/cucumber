@@ -1,8 +1,0 @@
-sudo: required
-
-services:
-  - docker
-
-script:
-  - ./scripts/docker-run Dockerfile.cucumber-build make
-  - cd gherkin/dotnet && ../../scripts/docker-run ../../Dockerfile.cucumber-build-dotnet make
