@@ -7,7 +7,7 @@ references:
       - image: cucumber/cucumber-build:39e69ae56ad2861d86a8f26d3cec0285
   attach_all: &attach_all
     attach_workspace:
-      at: .
+      at: '~'
   persist_all: &persist_all
     persist_to_workspace:
       root: '~'
