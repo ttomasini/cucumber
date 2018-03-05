@@ -13,23 +13,23 @@ references:
       root: /
 
 jobs:
-  test-cucumber-expressions-java:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./cucumber-expressions/java
-
-  test-cucumber-expressions-javascript:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./cucumber-expressions/javascript
-
-  test-cucumber-expressions-ruby:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./cucumber-expressions/ruby
+  # test-cucumber-expressions-java:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./cucumber-expressions/java
+  #
+  # test-cucumber-expressions-javascript:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./cucumber-expressions/javascript
+  #
+  # test-cucumber-expressions-ruby:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./cucumber-expressions/ruby
 
   test-cucumber-react:
     <<: *default
@@ -52,32 +52,32 @@ jobs:
       - run: make --directory ./event-protocol
       - *persist_all
 
-  test-gherkin-c:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/c
-
-  test-gherkin-dotnet:
-    working_directory: ~/app
-    docker:
-      - image: cucumber/cucumber-build-dotnet:30a8674a75afb13b4d2eb81e551ecb74
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/dotnet
-
-  test-gherkin-go:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/go
-
-  test-gherkin-java:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/java
-
+  # test-gherkin-c:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/c
+  #
+  # test-gherkin-dotnet:
+  #   working_directory: ~/app
+  #   docker:
+  #     - image: cucumber/cucumber-build-dotnet:30a8674a75afb13b4d2eb81e551ecb74
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/dotnet
+  #
+  # test-gherkin-go:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/go
+  #
+  # test-gherkin-java:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/java
+  # 
   test-gherkin-javascript:
     <<: *default
     steps:
@@ -85,55 +85,55 @@ jobs:
       - run: make --directory ./gherkin/javascript
       - *persist_all
 
-  test-gherkin-objective-c:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/objective-c
-
-  test-gherkin-perl:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/perl
-
-  test-gherkin-python:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/python
-
-  test-gherkin-ruby:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/ruby
-
-  test-tag-expressions-java:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/java
-
-  test-tag-expressions-javascript:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/javascript
-
-  test-tag-expressions-ruby:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/ruby
+  # test-gherkin-objective-c:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/objective-c
+  #
+  # test-gherkin-perl:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/perl
+  #
+  # test-gherkin-python:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/python
+  #
+  # test-gherkin-ruby:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./gherkin/ruby
+  #
+  # test-tag-expressions-java:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./tag-expressions/java
+  #
+  # test-tag-expressions-javascript:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./tag-expressions/javascript
+  #
+  # test-tag-expressions-ruby:
+  #   <<: *default
+  #   steps:
+  #     - checkout
+  #     - run: make --directory ./tag-expressions/ruby
 
 workflows:
   version: 2
   test:
     jobs:
-      - test-cucumber-expressions-java
-      - test-cucumber-expressions-javascript
-      - test-cucumber-expressions-ruby
+      # - test-cucumber-expressions-java
+      # - test-cucumber-expressions-javascript
+      # - test-cucumber-expressions-ruby
       - test-cucumber-react:
           requires:
             - test-cucumber-redux
@@ -143,15 +143,15 @@ workflows:
       - test-event-protocol:
           requires:
             - test-gherkin-javascript
-      - test-gherkin-c
-      - test-gherkin-dotnet
-      - test-gherkin-go
-      - test-gherkin-java
+      # - test-gherkin-c
+      # - test-gherkin-dotnet
+      # - test-gherkin-go
+      # - test-gherkin-java
       - test-gherkin-javascript
-      - test-gherkin-objective-c
-      - test-gherkin-perl
-      - test-gherkin-python
-      - test-gherkin-ruby
-      - test-tag-expressions-java
-      - test-tag-expressions-javascript
-      - test-tag-expressions-ruby
+      # - test-gherkin-objective-c
+      # - test-gherkin-perl
+      # - test-gherkin-python
+      # - test-gherkin-ruby
+      # - test-tag-expressions-java
+      # - test-tag-expressions-javascript
+      # - test-tag-expressions-ruby
