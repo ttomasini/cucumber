@@ -10,7 +10,7 @@ references:
       at: .
   persist_all: &persist_all
     persist_to_workspace:
-      root: /
+      root: '~'
       paths:
         -  '*'
 
