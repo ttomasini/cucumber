@@ -19,6 +19,12 @@ jobs:
       - checkout
       - run: make --directory ./cucumber-expressions/javascript
 
+  test-cucumber-expression-ruby:
+    <<: *default
+    steps:
+      - checkout
+      - run: make --directory ./cucumber-expressions/ruby
+
 workflows:
   version: 2
   test:
