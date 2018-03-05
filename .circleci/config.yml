@@ -12,7 +12,7 @@ references:
     persist_to_workspace:
       root: /
       paths:
-        -  *
+        -  '*'
 
 jobs:
   # test-cucumber-expressions-java:
