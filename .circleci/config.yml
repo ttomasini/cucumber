@@ -1,0 +1,20 @@
+version: 2
+
+references:
+  default: &default
+    working_directory: ~/app
+    docker:
+      - image: cucumber/cucumber-build:39e69ae56ad2861d86a8f26d3cec0285
+
+jobs:
+  test-cucumber-expression-java:
+    <<: *default
+    steps:
+      - checkout
+      - run: make --directory ./cucumber-expressions/java
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-cucumber-expression-java
