@@ -5,14 +5,6 @@ references:
     working_directory: ~/app
     docker:
       - image: cucumber/cucumber-build:39e69ae56ad2861d86a8f26d3cec0285
-  attach_all: &attach_all
-    attach_workspace:
-      at: '~'
-  persist_all: &persist_all
-    persist_to_workspace:
-      root: '~'
-      paths:
-        -  '*'
 
 jobs:
   # test-cucumber-expressions-java:
@@ -37,21 +29,10 @@ jobs:
     <<: *default
     steps:
       - *attach_all
-      - run: make --directory ./cucumber-react
-      - *persist_all
-
-  test-cucumber-redux:
-    <<: *default
-    steps:
-      - *attach_all
-      - run: make --directory ./cucumber-redux
-      - *persist_all
-
-  test-event-protocol:
-    <<: *default
-    steps:
-      - *attach_all
+      - run: make --directory ./gherkin/javascript
       - run: make --directory ./event-protocol
+      - run: make --directory ./cucumber-redux
+      - run: make --directory ./cucumber-react
       - *persist_all
 
   # test-gherkin-c:
@@ -80,13 +61,6 @@ jobs:
   #     - checkout
   #     - run: make --directory ./gherkin/java
   #
-  test-gherkin-javascript:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/javascript
-      - *persist_all
-
   # test-gherkin-objective-c:
   #   <<: *default
   #   steps:
@@ -136,20 +110,11 @@ workflows:
       # - test-cucumber-expressions-java
       # - test-cucumber-expressions-javascript
       # - test-cucumber-expressions-ruby
-      - test-cucumber-react:
-          requires:
-            - test-cucumber-redux
-      - test-cucumber-redux:
-          requires:
-            - test-event-protocol
-      - test-event-protocol:
-          requires:
-            - test-gherkin-javascript
+      - test-cucumber-react
       # - test-gherkin-c
       # - test-gherkin-dotnet
       # - test-gherkin-go
       # - test-gherkin-java
-      - test-gherkin-javascript
       # - test-gherkin-objective-c
       # - test-gherkin-perl
       # - test-gherkin-python
