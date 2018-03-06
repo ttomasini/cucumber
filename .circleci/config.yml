@@ -1,47 +1,33 @@
 version: 2
 
-references:
-  default: &default
+jobs:
+  test-default:
     working_directory: ~/app
     docker:
       - image: cucumber/cucumber-build:39e69ae56ad2861d86a8f26d3cec0285
-
-jobs:
-  test-cucumber-expressions-java:
-    <<: *default
     steps:
       - checkout
       - run: make --directory ./cucumber-expressions/java
-
-  test-cucumber-expressions-javascript:
-    <<: *default
-    steps:
-      - checkout
       - run: make --directory ./cucumber-expressions/javascript
-
-  test-cucumber-expressions-ruby:
-    <<: *default
-    steps:
-      - checkout
       - run: make --directory ./cucumber-expressions/ruby
-
-  # cucumber-react depends on other projects in the repo
-  test-cucumber-react:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/javascript
       - run: make --directory ./event-protocol
+      - run: make --directory ./gherkin/c
+      - run: make --directory ./gherkin/javascript
+      - run: make --directory ./gherkin/go
+      - run: make --directory ./gherkin/java
+      - run: make --directory ./gherkin/objective-c
+      - run: make --directory ./gherkin/perl
+      - run: make --directory ./gherkin/python
+      - run: make --directory ./gherkin/ruby
+      - run: make --directory ./tag-expressions/java
+      - run: make --directory ./tag-expressions/javascript
+      - run: make --directory ./tag-expressions/ruby
+      # cucumber-redux depends on event-protocol and gherkin/javascript
       - run: make --directory ./cucumber-redux
+      # cucumber-redux depends on cucumber-redux, event-protocol and gherkin/javascript
       - run: make --directory ./cucumber-react
 
-  test-gherkin-c:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/c
-
-  test-gherkin-dotnet:
+  test-dotnet:
     working_directory: ~/app
     docker:
       - image: cucumber/cucumber-build-dotnet:30a8674a75afb13b4d2eb81e551ecb74
@@ -49,76 +35,9 @@ jobs:
       - checkout
       - run: make --directory ./gherkin/dotnet
 
-  test-gherkin-go:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/go
-
-  test-gherkin-java:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/java
-
-  test-gherkin-objective-c:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/objective-c
-
-  test-gherkin-perl:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/perl
-
-  test-gherkin-python:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/python
-
-  test-gherkin-ruby:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./gherkin/ruby
-
-  test-tag-expressions-java:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/java
-
-  test-tag-expressions-javascript:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/javascript
-
-  test-tag-expressions-ruby:
-    <<: *default
-    steps:
-      - checkout
-      - run: make --directory ./tag-expressions/ruby
-
 workflows:
   version: 2
   test:
     jobs:
-      - test-cucumber-expressions-java
-      - test-cucumber-expressions-javascript
-      - test-cucumber-expressions-ruby
-      - test-cucumber-react
-      - test-gherkin-c
-      - test-gherkin-dotnet
-      - test-gherkin-go
-      - test-gherkin-java
-      - test-gherkin-objective-c
-      - test-gherkin-perl
-      - test-gherkin-python
-      - test-gherkin-ruby
-      - test-tag-expressions-java
-      - test-tag-expressions-javascript
-      - test-tag-expressions-ruby
+      - test-default
+      - test-dotnet
