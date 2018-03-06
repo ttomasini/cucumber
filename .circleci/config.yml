@@ -7,9 +7,6 @@ jobs:
       - image: cucumber/cucumber-build:39e69ae56ad2861d86a8f26d3cec0285
     steps:
       - checkout
-      - run: make --directory ./cucumber-expressions/java
-      - run: make --directory ./cucumber-expressions/javascript
-      - run: make --directory ./cucumber-expressions/ruby
       - run: make --directory ./event-protocol
       - run: make --directory ./gherkin/c
       - run: make --directory ./gherkin/javascript
@@ -19,6 +16,9 @@ jobs:
       - run: make --directory ./gherkin/perl
       - run: make --directory ./gherkin/python
       - run: make --directory ./gherkin/ruby
+      - run: make --directory ./cucumber-expressions/java
+      - run: make --directory ./cucumber-expressions/javascript
+      - run: make --directory ./cucumber-expressions/ruby
       - run: make --directory ./tag-expressions/java
       - run: make --directory ./tag-expressions/javascript
       - run: make --directory ./tag-expressions/ruby
