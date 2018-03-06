@@ -28,12 +28,11 @@ jobs:
   test-cucumber-react:
     <<: *default
     steps:
-      - *attach_all
+      - checkout
       - run: make --directory ./gherkin/javascript
       - run: make --directory ./event-protocol
       - run: make --directory ./cucumber-redux
       - run: make --directory ./cucumber-react
-      - *persist_all
 
   # test-gherkin-c:
   #   <<: *default
