@@ -21,3 +21,12 @@ Something
 Привет, {word}!
 Привет, Мир!
 ["Мир"]
+---
+/I have (.*) cukes? in my (.*) now/
+I have 22 cukes in my belly now
+["22","belly"]
+---
+I have {} cukes? in my {} now
+I have 22 cukes in my belly now
+["22","belly"]
+---
