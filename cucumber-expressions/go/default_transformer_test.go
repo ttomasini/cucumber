@@ -7,20 +7,20 @@ import (
 )
 
 func TestConvert(t *testing.T) {
-	t.Run("SimpleDefaultTransformer converts to kind string", func(t *testing.T) {
+	t.Run("converts to type string", func(t *testing.T) {
 		typeOfString := reflect.TypeOf("string")
 		assertTransforms(t, "Barbara Liskov", "Barbara Liskov", typeOfString)
 	})
 
-	t.Run("SimpleDefaultTransformer converts to kind string", func(t *testing.T) {
+	t.Run("converts to kind string", func(t *testing.T) {
 		assertTransforms(t, "Barbara Liskov", "Barbara Liskov", reflect.String)
 	})
 
-	t.Run("SimpleDefaultTransformer converts to kind bool", func(t *testing.T) {
+	t.Run("converts to kind bool", func(t *testing.T) {
 		assertTransforms(t, true, "true", reflect.Bool)
 	})
 
-	t.Run("SimpleDefaultTransformer converts to kind int", func(t *testing.T) {
+	t.Run("converts to kind int", func(t *testing.T) {
 		assertTransforms(t, int(42), "42", reflect.Int)
 		assertTransforms(t, int8(42), "42", reflect.Int8)
 		assertTransforms(t, int16(42), "42", reflect.Int16)
@@ -28,7 +28,7 @@ func TestConvert(t *testing.T) {
 		assertTransforms(t, int64(42), "42", reflect.Int64)
 	})
 
-	t.Run("SimpleDefaultTransformer converts to kind unit", func(t *testing.T) {
+	t.Run("converts to kind unit", func(t *testing.T) {
 		assertTransforms(t, uint(42), "42", reflect.Uint)
 		assertTransforms(t, uint8(42), "42", reflect.Uint8)
 		assertTransforms(t, uint16(42), "42", reflect.Uint16)
@@ -36,12 +36,12 @@ func TestConvert(t *testing.T) {
 		assertTransforms(t, uint64(42), "42", reflect.Uint64)
 	})
 
-	t.Run("SimpleDefaultTransformer converts to kind float", func(t *testing.T) {
+	t.Run("converts to kind float", func(t *testing.T) {
 		assertTransforms(t, float32(4.2), "4.2", reflect.Float32)
 		assertTransforms(t, float64(4.2), "4.2", reflect.Float64)
 	})
 
-	t.Run("SimpleDefaultTransformer errors un supported kind", func(t *testing.T) {
+	t.Run("errors un supported kind", func(t *testing.T) {
 		transformer := SimpleDefaultTransformer{}
 		_, err := transformer.Transform("Barbara Liskov", reflect.Complex64)
 		require.EqualError(t, err,
