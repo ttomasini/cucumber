@@ -51,7 +51,7 @@ to import Mozilla certificates & solve the problem
 
 ## Adding or updating an i18n language
 
-1) Edit `gherkin-langauges.json`.
+1) Edit `gherkin-languages.json`.
 
 2) Distribute the changes to the different parser implementations, this requires `make`, `jq`, `diff`, but no compiler/interpreters:
 
