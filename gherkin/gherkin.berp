@@ -1,12 +1,12 @@
 [
-	Tokens -> #Empty,#Comment,#TagLine,#FeatureLine,#RuleLine,#BackgroundLine,#ScenarioLine,#ExamplesLine,#StepLine,#DocStringSeparator,#TableRow,#Language
+	Tokens -> #Empty,#Comment,#TagLine,#FeatureLine,#RuleLine,#BackgroundLine,#ScenarioLine,#ExamplesLine,#StepLine,#DocStringSeparator,#TableRow,#Language,#AftercareLine
 	IgnoredTokens -> #Comment,#Empty
 	ClassName -> Parser
 	Namespace -> Gherkin
 ]
 
 GherkinDocument! := Feature?
-Feature! := FeatureHeader Background? ScenarioDefinition* Rule*
+Feature! := FeatureHeader Background? ScenarioDefinition* Rule* Postprocess?
 FeatureHeader! := #Language? Tags? #FeatureLine DescriptionHelper
 
 Rule! := RuleHeader Background? ScenarioDefinition*
@@ -36,3 +36,5 @@ Tags! := #TagLine+
 // we also eat the leading empty lines, the tailing lines are not removed by the parser to avoid lookahead, this has to be done by the AST builder
 DescriptionHelper := #Empty* Description? #Comment*
 Description! := #Other+
+
+Aftercare! := #AftercareLine DescriptionHelper Step*
