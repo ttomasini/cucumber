@@ -15,6 +15,10 @@ codesigning.asc
 .built
 .rsynced
 .release/
+vendor/
 
 # OS
 .DS_Store
+
+# Ruby
+.bundle/
